@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom'; // 🚀 'Navigate' import kiya redirect ke liye
+import { Routes, Route, Navigate } from 'react-router-dom'; 
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -94,7 +94,7 @@ function App() {
               } 
             />
 
-            {/* 🚀 NEW: TASKS ROUTE SECURED & ALIGNED */}
+            {/* 🚀 TASKS ROUTE SECURED */}
             <Route 
               path="/tasks" 
               element={
@@ -106,8 +106,17 @@ function App() {
               } 
             />
 
-            {/* Commits ko bhi jab complete karenge tab ProtectedRoute mein daal denge */}
-            <Route path="/commits" element={<Commits />} />
+            {/* 🚀 NEW: COMMITS ROUTE SECURED & ALIGNED */}
+            <Route 
+              path="/commits" 
+              element={
+                <ProtectedRoute>
+                  <div className="pt-24 min-h-screen">
+                    <Commits />
+                  </div>
+                </ProtectedRoute>
+              } 
+            />
           </Routes>
         </div>
       </div>
