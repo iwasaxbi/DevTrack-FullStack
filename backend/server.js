@@ -26,11 +26,13 @@ mongoose.connect(process.env.MONGO_URI)
 // ==========================================
 const authRoutes = require('./routes/auth');
 const dashboardRoutes = require('./routes/dashboard'); 
-const projectRoutes = require('./routes/project'); // 🚀 NEW: Project API imported
+const projectRoutes = require('./routes/project');
+const taskRoutes = require('./routes/task'); // 🚀 NEW: Task API imported
 
 app.use('/api/auth', authRoutes); 
 app.use('/api/dashboard', dashboardRoutes); 
-app.use('/api/projects', projectRoutes); // 🚀 NEW: Project APIs '/api/projects' se shuru hongi
+app.use('/api/projects', projectRoutes); 
+app.use('/api/tasks', taskRoutes); // 🚀 NEW: Task APIs '/api/tasks' se shuru hongi
 
 // Basic Test Route
 app.get('/', (req, res) => {

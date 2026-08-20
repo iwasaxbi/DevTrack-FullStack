@@ -82,7 +82,7 @@ function App() {
               } 
             />
             
-            {/* 🚀 NEW: PROJECTS ROUTE SECURED */}
+            {/* 🚀 PROJECTS ROUTE SECURED */}
             <Route 
               path="/projects" 
               element={
@@ -94,8 +94,19 @@ function App() {
               } 
             />
 
-            {/* Inko bhi jab complete karenge tab ProtectedRoute mein daal denge */}
-            <Route path="/tasks" element={<Tasks />} />
+            {/* 🚀 NEW: TASKS ROUTE SECURED & ALIGNED */}
+            <Route 
+              path="/tasks" 
+              element={
+                <ProtectedRoute>
+                  <div className="pt-24 min-h-screen">
+                    <Tasks />
+                  </div>
+                </ProtectedRoute>
+              } 
+            />
+
+            {/* Commits ko bhi jab complete karenge tab ProtectedRoute mein daal denge */}
             <Route path="/commits" element={<Commits />} />
           </Routes>
         </div>
