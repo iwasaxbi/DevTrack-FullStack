@@ -69,7 +69,7 @@ function App() {
             />
 
             {/* ========================================== */}
-            {/* 🚀 NEW: SECURE DASHBOARD ROUTE */}
+            {/* 🚀 SECURE ROUTES (Only Logged-in Users) */}
             {/* ========================================== */}
             <Route 
               path="/dashboard" 
@@ -82,8 +82,19 @@ function App() {
               } 
             />
             
-            {/* Note: Inko bhi future mein ProtectedRoute se wrap kar sakte ho */}
-            <Route path="/projects" element={<Projects />} />
+            {/* 🚀 NEW: PROJECTS ROUTE SECURED */}
+            <Route 
+              path="/projects" 
+              element={
+                <ProtectedRoute>
+                  <div className="pt-24 min-h-screen">
+                    <Projects />
+                  </div>
+                </ProtectedRoute>
+              } 
+            />
+
+            {/* Inko bhi jab complete karenge tab ProtectedRoute mein daal denge */}
             <Route path="/tasks" element={<Tasks />} />
             <Route path="/commits" element={<Commits />} />
           </Routes>
