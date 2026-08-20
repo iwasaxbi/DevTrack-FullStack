@@ -12,17 +12,16 @@ router.post('/', authMiddleware, async (req, res) => {
   try {
     const { title, description, status } = req.body;
 
-    // Validation
     if (!title) {
       return res.status(400).json({ success: false, message: "Project title is required" });
     }
 
-    // Naya project banao aur current user ki ID attach karo
+    // 🚀 FIX: req.user.userId use kiya (Kyunki auth.js mein userId naam se save tha)
     const newProject = new Project({
       title,
       description,
       status: status || 'Active',
-      owner: req.user.id || req.user._id // Token se user ID aayegi
+      owner: req.user.userId 
     });
 
     const savedProject = await newProject.save();
@@ -41,8 +40,8 @@ router.post('/', authMiddleware, async (req, res) => {
 // ==========================================
 router.get('/', authMiddleware, async (req, res) => {
   try {
-    // Database se sirf current user ke projects find karo (newest first)
-    const projects = await Project.find({ owner: req.user.id || req.user._id }).sort({ createdAt: -1 });
+    // 🚀 FIX: req.user.userId se database mein filter kiya
+    const projects = await Project.find({ owner: req.user.userId }).sort({ createdAt: -1 });
     
     res.status(200).json({ success: true, data: projects });
   } catch (error) {
